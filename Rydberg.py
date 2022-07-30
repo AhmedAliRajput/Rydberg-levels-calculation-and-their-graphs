@@ -1,7 +1,7 @@
 import numpy as np
 import xlrd
 import matplotlib.pyplot as plt
-wb=xlrd.open_workbook(r"D:\Research\1\optimized excel files\Ahmed's Elements.xls")
+wb=xlrd.open_workbook("Nist_data.xls")
 sheet=wb.sheet_by_index(0)
 
 print('\nDo you want to draw energy level diagram or Quantum defect graph or Energy graph?')

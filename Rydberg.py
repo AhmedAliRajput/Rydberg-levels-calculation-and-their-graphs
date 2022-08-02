@@ -1,7 +1,7 @@
 import numpy as np
 import xlrd
 import matplotlib.pyplot as plt
-wb=xlrd.open_workbook("Nist_data.xls")
+wb=xlrd.open_workbook("NIST_data.xls")
 sheet=wb.sheet_by_index(0)
 
 print('\nDo you want to draw energy level diagram or Quantum defect graph or Energy graph?')
@@ -242,13 +242,13 @@ if select=='2':
     plt.plot(x,y)
     plt.xlabel('Quantum No')
     plt.ylabel('Energy Calculated')
-    plt.title("Element's name "+element +" "+' orbital-'+O)
+    plt.title("4d$^{10}$ns of Ag I")
     
     plt1=plt.figure(2)
     plt.plot(x,z)            
     plt.xlabel('Quantum No')                     
     plt.ylabel('Quantum Defects')
-    plt.title("Element's name "+element +" "+' orbital-'+O)
+    plt.title("4d$^{10}$ns of Ag I")
     plt.show()
 
 

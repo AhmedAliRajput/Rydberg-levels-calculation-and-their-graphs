@@ -1,7 +1,7 @@
 import numpy as np
 import xlrd
 import matplotlib.pyplot as plt
-wb=xlrd.open_workbook("NIST_data.xls")
+wb=xlrd.open_workbook("Nist_data.xls")
 sheet=wb.sheet_by_index(0)
 
 print('\nDo you want to draw energy level diagram or Quantum defect graph or Energy graph?')
@@ -80,11 +80,12 @@ if yn=='yes':
                 j=l[k]            
                 data1=[j,o[i],E[i],n[i],sp[i]]
                 data.append(data1)
-    
-    
+    Oo = min(E)
+
     "==========================="
     "Quantum Defects calculation"
     "==========================="
+
     for p in range(0,1+data[-1][0]):
         E=[]
         n=[]
@@ -92,13 +93,13 @@ if yn=='yes':
             if p==data[i][0]:
                 n.append(data[i][3])
                 E.append(data[i][2])
-        x=3
+        
         if len(n)>3:
             x=4
             dn=[]
             for i in range(0,x):
                 dn.append(n[i]-(R/(I-E[i]))**0.5)
-                
+
             "========================================="
             "Quantum Defects' coefficients calculatoin"
             "========================================="
@@ -191,7 +192,7 @@ if yn=='no':
             E11.append(I-R*Z**2/(m[i]-sum)**2)
             Enet.append([p,I-R*Z**2/(m[i]-sum)**2,m[i],delta[i]])
             suborbitals1.append(suborbitals[j])
-                
+            
 if select=='1':
     "============================"
     "Plotting Energy levels Graph"
@@ -207,12 +208,14 @@ if select=='1':
     #for i in range(0,j+1):
         x_pos=((j+0.15+j+1)/2)
         y_pos = min(Enet)[1]
-        plt.text(x_pos,y_pos, suborbitals[j])
+        plt.text(x_pos,Oo, suborbitals[j])
         
     plt.xlabel('orbitals')
     plt.ylabel('Energies')
     plt.title("Element's name "+element)
-
+    plt.savefig('Energy level graph of '+ element +' '+'.png')
+    plt.show()
+    
 if select=='2':
     if yn=='yes':
         o=[]
@@ -238,17 +241,22 @@ if select=='2':
             x.append(Enet[k][2])
             y.append(Enet[k][1])
             z.append(Enet[k][3])
+    
     plt1=plt.figure(1)
     plt.plot(x,y)
     plt.xlabel('Quantum No')
     plt.ylabel('Energy Calculated')
     plt.title("4d$^{10}$ns of Ag I")
+    plt.savefig('Energy Calculated for  '+ element +' '+ O +' orbiral'+'.png')
+    plt.show()
+
     
     plt1=plt.figure(2)
     plt.plot(x,z)            
     plt.xlabel('Quantum No')                     
     plt.ylabel('Quantum Defects')
     plt.title("4d$^{10}$ns of Ag I")
+    plt.savefig('Quantum defects calculated for '+ element +' '+ O +' orbital'+'.png')
     plt.show()
 
 
